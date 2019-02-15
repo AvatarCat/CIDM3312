@@ -33,6 +33,7 @@ namespace Lab6
         public string Title {get; set;}
         public string Genre {get; set;}
         public int StudioId {get; set;}
+        public Studio Studio {get; set;}
 
         public override string ToString()
         {

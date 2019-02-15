@@ -53,7 +53,22 @@ namespace Lab6
                 };
                 
                 Studio studioToUpdate = db.Studios.Include(s => s.Movies).Where(s => s.StudioId == 2).First();
-                studioToUpdate.M.Add(movie);
+                studioToUpdate.Movies.Add(movie);
+                db.SaveChanges();
+            }
+
+            // Moving Apollo 13 from the 20th Century Fox studio to the Universal Pictures studio
+            using (var db = new MovieContext())
+            {
+                Movie movie = db.Movies.Where(m => m.Title == "Apollo 13").First();
+                movie.Studio= db.Studios.Where(s => s.Name == "Universal Pictures").First();
+                db.SaveChanges();
+            }
+
+            using (var db = new MovieContext())
+            {
+                Movie movieToDelete = db.Movies.Where(m => m.MovieID == 2).First();
+                db.Remove(movieToDelete);
                 db.SaveChanges();
             }
         }
