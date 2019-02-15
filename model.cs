@@ -37,7 +37,7 @@ namespace Lab6
 
         public override string ToString()
         {
-            return $"Movie: {Title}";
+            return $"Movie: {Title}\tGenre: {Genre}";
         }
     }
 

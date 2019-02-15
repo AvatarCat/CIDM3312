@@ -71,6 +71,21 @@ namespace Lab6
                 db.Remove(movieToDelete);
                 db.SaveChanges();
             }
+
+            using (var db = new  MovieContext())
+            {
+                var studios = db.Studios.Include(s => s.Movies);
+                
+                foreach (var s in studios)
+                {
+                    Console.WriteLine(s);
+                    foreach (var m in s.Movies)
+                    {
+                        Console.WriteLine("\t" + m);
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
     }
 }
